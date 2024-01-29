@@ -1,0 +1,27 @@
+.picklist-select-product{
+    background: #f0f8ff00;
+    height: 32px;
+    position: absolute;
+    right: 24px;
+    border-radius: 4px;
+}
+
+
+.bot-help-icon {
+    position: absolute;
+    display: flex;
+    margin-top: 18px;
+    right: 17px;
+  }
+  
+  .bot-help-icon p {
+    text-align: center;
+    width: 26px;
+    font-size: 18px;
+    height: 26px;
+    border: 1px solid;
+    border-radius: 50%;
+    color: white;
+  }
+  
+  

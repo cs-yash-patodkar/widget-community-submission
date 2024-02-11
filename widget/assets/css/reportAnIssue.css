@@ -23,5 +23,10 @@
     border-radius: 50%;
     color: white;
   }
+
+  .community-form-overflow{
+    height: calc(100vh - 30px);
+    overflow-y: auto;
+  }
   
   

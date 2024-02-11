@@ -8,7 +8,7 @@
 
 <div class="widget widget-container chart" style="background-color:#1A202A">
   <form data-ng-show="!nextPage" data-ng-submit="submit()" name="communitySubmissionForm"
-    data-ng-class="{'state-wait': processing }">
+    data-ng-class="{'state-wait': processing }" class="community-form-overflow">
     <div id="report-header" class="display-inline-flex margin-0 width-100pt padding-md"
       style="background-size: cover; background-color: #232C3C;">
       <div class="font-size-14" style=" margin: 5px;">
@@ -18,7 +18,7 @@
       </div>
       <div ng-click="openDocumentation()" class="bot-help-icon">
         <p>?</p>
-    </div>
+      </div>
     </div>
     <div id="body" class="margin-15">
       <div>
@@ -36,8 +36,7 @@
         <div
           data-ng-class="{ 'has-error': communitySubmissionForm.emails.$invalid && communitySubmissionForm.emails.$touched }"
           class="display-flex">
-          <input class="form-control" type="email" id="emails" ng-model="user.emailId" name="email"
-            required multiple>
+          <input class="form-control" type="email" id="emails" ng-model="user.emailId" name="email" required multiple>
         </div>
       </div>
       <div>
@@ -49,21 +48,18 @@
           <input class="form-control" type="text" ng-model="user.organizationName" name="organizationName" required>
         </div>
       </div>
-      <hr>
+      <hr style="border-color: #47546A !important;">
 
       <div>
-        <label
-          class="font-size-12 mp-solutionpack-contents-card margin-top-md margin-right-md">Select a solution from create tab </label>
-        <label class="switch switch-pill switch-label switch-success padding-top-md">
-          <input type="checkbox" class="switch-input" name="IncludeAll" id="IncludeAll"
+        <label class="padding-top-md">
+          <input type="checkbox" name="showCreatedSolutions" id="showCreatedSolutions"
             data-ng-model="showCreatedSolutions">
-          <span class="switch-slider" data-checked="Yes" data-unchecked="No"></span>
         </label>
+        <label class="font-size-12 mp-solutionpack-contents-card margin-top-md margin-right-md margin-left-md">Select a
+          solution from create tab </label>
       </div>
 
       <div data-ng-if="showCreatedSolutions">
-        <label
-        class="font-size-12 mp-solutionpack-contents-card margin-right-md">(Selected solution's tgz/zip will be exported)</label>
         <div id="installedSPorC">
           <label id="field-for-data-source" class="control-label">Select solution
             <span class="text-danger">*</span>
@@ -77,27 +73,16 @@
             <option value="">Select an Option</option>
           </select>
         </div>
-        <div>
-          <label class="font-size-12" style="color:#D2D5DA" for="report-user-name">Solution Details<span
-              class="text-danger">*</span></label>
-          <div
-            data-ng-class="{ 'has-error': communitySubmissionForm.solutionDetails.$invalid && communitySubmissionForm.solutionDetails.$touched }"
-            class="display-flex">
-            <input class="form-control" type="text" ng-model="user.solutionDetails" name="solutionDetails" required>
-          </div>
-        </div>
       </div>
 
-      <hr>
       <div data-ng-if="!showCreatedSolutions">
-        <div>
-          Provide detailed information about solution:
-        </div>
+        <label class="font-size-12 mp-solutionpack-contents-card margin-right-md">Detail Information of solution
+        </label>
         <div id="selectCategory">
           <label id="field-for-data-source" class="control-label font-size-12">Solution Category
           </label>
           <select class="form-control" data-ng-options="content as content.name for content in category"
-            data-ng-model="selectedCategory" required>
+            data-ng-model="selectedCategory" data-ng-change="selectedCategoryChanged(selectedCategory)" required>
             <option value="">Select an Option</option>
           </select>
         </div>
@@ -110,58 +95,64 @@
             <input class="form-control" type="text" ng-model="user.solutionTitle" name="solutionTitle" required>
           </div>
         </div>
-        <div>
-          <label class="font-size-12" style="color:#D2D5DA" for="report-user-name">Solution Details<span
-              class="text-danger">*</span></label>
-          <div
-            data-ng-class="{ 'has-error': communitySubmissionForm.solutionDetails.$invalid && communitySubmissionForm.solutionDetails.$touched }"
-            class="display-flex">
-            <input class="form-control" type="text" ng-model="user.solutionDetails" name="solutionDetails" required>
-          </div>
-        </div>
-        <div id="upload-a-screenshot" class="margin-top-md" data-ng-show="!loadingJob">
-          <div data-ng-show="selectedCategory.name === 'Widget' || selectedCategory.name === 'Connector'">
-            <span class="font-size-12 margin-top-md" style="color:#D2D5DA">
-            </span>
-            <div class="file-upload margin-top-6" data-ng-model="uploadedFile" ngf-select="uploadFiles(uploadedFile)"
-              data-ngf-drop="uploadFiles(uploadedFile)" data-ng-show="!uploadedFileFlag" data-accept=".tgz"
-              data-ngf-pattern="'.zip,.tgz,.json'">
-              <h2 class="margin-top-sm margin-bottom-0">
-                <span class="padding-right-sm fa fa-folder-open"></span>
-              </h2>
-              <h5 class="margin-top-sm" style="background-color: unset; text-align: center;">Drop a tgz</h5>
-              <p>or click to use standard uploader</p>
-              <p>(File Size should not exceed 25MB)</p>
-            </div>
-            <button type="button" data-ng-show="uploadedFileFlag"
-              class="icon icon-edit btn btn-link margin-top-sm center-block" data-ng-click="uploadedFileFlag = null; "
-              id="change-profile-image">Change File</button>
-          </div>
-          <div data-ng-show="selectedCategory.name === 'Solution Pack'">
-            <span class="font-size-12 margin-top-md" style="color:#D2D5DA">
-            </span>
-            <div class="file-upload margin-top-6" data-ng-model="uploadedFile" ngf-select="uploadFiles(uploadedFile)"
-              data-ngf-drop="uploadFiles(uploadedFile)" data-ng-show="!uploadedFileFlag" data-accept=".zip"
-              data-ngf-pattern="'.zip,.tgz,.json'">
-              <h2 class="margin-top-sm margin-bottom-0">
-                <span class="padding-right-sm fa fa-folder-open"></span>
-              </h2>
-              <h5 class="margin-top-sm" style="background-color: unset; text-align: center;">Drop a zip</h5>
-              <p>or click to use standard uploader</p>
-              <p>(File Size should not exceed 25MB)</p>
-            </div>
-            <button type="button" data-ng-show="uploadedFileFlag"
-              class="icon icon-edit btn btn-link margin-top-sm center-block" data-ng-click="uploadedFileFlag = null; "
-              id="change-profile-image">Change Image</button>
-          </div>
+      </div>
+      <div id="solution-details">
+        <label class="font-size-12" style="color:#D2D5DA" for="report-user-name">Solution Details<span
+            class="text-danger">*</span></label>
+        <div
+          data-ng-class="{ 'has-error': communitySubmissionForm.solutionDetails.$invalid && communitySubmissionForm.solutionDetails.$touched }"
+          class="display-flex">
+          <div data-cs-markdown-editor data-mode="'edit'" DATA-wait-for-load="250" style="width:100%"
+            data-ng-model="solutionDetails" data-form-name="solutionDetails"></div>
         </div>
       </div>
+      <div id="upload-a-file" class="margin-top-md" data-ng-show="!loadingJob && !showCreatedSolutions">
+        <div data-ng-show="selectedCategory.name === 'Widget' || selectedCategory.name === 'Connector'">
+          <span class="font-size-12 margin-top-md" style="color:#D2D5DA">
+          </span>
+          <div class="file-upload margin-top-6" data-ng-model="uploadedFile" ngf-select="uploadFiles(uploadedFile)"
+            data-ngf-drop="uploadFiles(uploadedFile)" data-ng-show="!uploadedFileFlag" data-accept=".tgz"
+            data-ngf-pattern="'.zip,.tgz,.json'">
+            <h2 class="margin-top-sm margin-bottom-0">
+              <span class="padding-right-sm fa fa-folder-open"></span>
+            </h2>
+            <h5 class="margin-top-sm" style="background-color: unset; text-align: center;">Drop a tgz</h5>
+            <p>or click to use standard uploader</p>
+            <p>(File Size should not exceed 25MB)</p>
+          </div>
+          <button type="button" data-ng-show="uploadedFileFlag"
+            class="icon icon-edit btn btn-link margin-top-sm center-block" data-ng-click="uploadedFileFlag = null; "
+            id="change-profile-image">Change File</button>
+        </div>
+        <div data-ng-show="selectedCategory.name === 'Solution Pack'">
+          <span class="font-size-12 margin-top-md" style="color:#D2D5DA">
+          </span>
+          <div class="file-upload margin-top-6" data-ng-model="uploadedFile" ngf-select="uploadFiles(uploadedFile)"
+            data-ngf-drop="uploadFiles(uploadedFile)" data-ng-show="!uploadedFileFlag" data-accept=".zip"
+            data-ngf-pattern="'.zip,.tgz,.json'">
+            <h2 class="margin-top-sm margin-bottom-0">
+              <span class="padding-right-sm fa fa-folder-open"></span>
+            </h2>
+            <h5 class="margin-top-sm" style="background-color: unset; text-align: center;">Drop a zip</h5>
+            <p>or click to use standard uploader</p>
+            <p>(File Size should not exceed 25MB)</p>
+          </div>
+          <button type="button" data-ng-show="uploadedFileFlag"
+            class="icon icon-edit btn btn-link margin-top-sm center-block" data-ng-click="uploadedFileFlag = null; "
+            id="change-profile-image">Change Image</button>
+        </div>
+      </div>
+
     </div>
     <div id="footer">
       <div class="text-center">
         <button type="submit" data-ng-disabled="playbookTriggered"
-          class="btn btn-primary btn-sm margin-bottom-sm margin-left-md width-100px">
+          class="btn btn-primary btn-sm margin-left-md width-100px">
           Submit
+        </button>
+        <button id="breadcrumb-cancel" type="button" class="btn btn-sm btn-default margin-right-negative-2"
+          data-ng-disabled="playbookTriggered" data-ng-click="cancel()"><i
+            class="icon icon-close margin-right-sm"></i>Cancel
         </button>
       </div>
     </div>
@@ -169,16 +160,27 @@
       <cs-spinner></cs-spinner>
     </div>
   </form>
-  <div id="Thank You Image" class="position-absolute top-200px" style="left:150px" data-ng-if="nextPage"">
-    <img src=" widgets/installed/communitySubmission-1.0.0/images/Thankyou.svg" alt="Bot">
-    <div>
-      Name: {{user.fullName}}
-      <br>
-      Email Id: {{user.emailId}}
-      <br>
-      Solution Title: {{user.solutionTitle}}
-      <br>
-      Solution Details: {{user.solutionDetails}}
+  <div id="Thank You Image" data-ng-if="nextPage"">
+    <img class=" position-relative top-25" style="left:150px"
+    src=" widgets/installed/communitySubmission-1.0.0/images/Thankyou.svg" alt="Bot">
+
+    <div style="top:130px; position:relative; left:50px;">
+      Submission Details
+      <div style="color: #A3AAB7;">
+        Name: {{user.fullName}}
+        <br>
+        Email Id: {{user.emailId}}
+        <br>
+        Solution Title: {{user.solutionTitle}}
+        <br>
+        Solution Details: {{solutionDetails}}
+        <br>
+      </div>
+
+      <button id="breadcrumb-cancel" type="button" class="btn btn-sm btn-default margin-right-negative-2"
+        data-ng-disabled="playbookTriggered" data-ng-click="cancel()"><i
+          class="icon icon-close margin-right-sm"></i>Close
+      </button>
     </div>
 
   </div>

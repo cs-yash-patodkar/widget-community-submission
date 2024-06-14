@@ -214,6 +214,14 @@ Copyright end */
         submitContentFormService.exportSolution(angular.copy($scope.selectedSolution.selectedSolution), $scope);
       }
       else {
+        if(!$scope.uploadedFileFlag){
+          $scope.submitFormFlag = false;
+          var uploadFileDiv = document.getElementsByName('uploadFileDiv');
+          for (var i = 0; i < uploadFileDiv.length; i++) {
+            uploadFileDiv[i].setAttribute('style', 'border: 2px dashed #da393d;');
+          }
+          return;
+        }
         submitContentFormService.triggerPlaybook($scope);
       }
     }

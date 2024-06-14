@@ -1,13 +1,13 @@
 {
     "name": "submitContentForm",
     "title": "Submit Content Form",
-    "subTitle": "To get community submissions such as widgets, sp's and connectors",
+    "subTitle": "The Submit Content Form Widget is a user-friendly interface designed for community members to share their solutions.",
     "version": "1.0.0",
     "published_date": 1705319297,
     "releaseNotes": "unavailable",
     "metadata": {
         "help_online": "https://github.com/fortinet-fortisoar/widget-submit-content-form/blob/release/1.0.0/README.md",
-        "description": "To get community submissions such as widgets, sp's and connectors",
+        "description": "The Submit Content Form Widget is part of the larger Submit Your Content Solution pack that empowers community members to seamlessly submit their solutions on FortiSOAR’s Content Hub. By launching their FortiSOAR instance and leveraging the solution pack's playbooks, users can streamline the submission process, ensuring efficient handling of their valuable contributions.",
         "pages": [],
         "certified": "No",
         "publisher": "Fortinet",

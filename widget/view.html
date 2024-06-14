@@ -15,7 +15,8 @@ Copyright end -->
           {{viewWidgetVars.SUBMIT_YOUR_CONTENT}}
         </h3>
         <div class="note-style" id="upon-submission-of-email">
-          {{viewWidgetVars.UPON_SUBMISSION_EMAIL_TRIGGERED}}</div>
+          {{viewWidgetVars.UPON_SUBMISSION_EMAIL_TRIGGERED}}
+        </div>
       </div>
       <div id="static-image" style="text-align: right; margin-top: 20px;">
         <img data-ng-if="!isLightTheme" src="widgets/installed/submitContentForm-1.0.0/images/contentFiller.svg"
@@ -121,6 +122,9 @@ Copyright end -->
         <div class="content-form-text margin-top-lg" data-ng-class="{'content-form-text-white': isLightTheme }">
           {{viewWidgetVars.FORTISOAR_CONTENTHUB_INVITE_USERS}}
         </div>
+        <div class="content-form-text margin-top-lg" data-ng-class="{'content-form-text-white': isLightTheme }">
+          The<b> Submit Your Content </b>empowers community members to seamlessly submit their solutions using this form that captures mandatory details about the solution pack, widget, or connector. By collecting all necessary information upfront, it helps to eliminates the need for back-and-forth communication between the integration team and content creators.
+        </div>
         <div class="position-relative" style="top: 40px;">
           <button data-ng-click="moveToStep(2)" class="btn btn-primary btn-sm margin-right-md margin-top-lg">
             <div class="display-inline margin-left-md">
@@ -140,8 +144,8 @@ Copyright end -->
             </div>
             <div id="submitter details">
               <div class="margin-bottom-md">
-                <label class="font-size-12" style="color:#D2D5DA" data-ng-class="{'label-color-white': isLightTheme}" for="report-user-name">{{viewWidgetVars.NAME}} <span
-                    class="text-danger">*</span></label>
+                <label class="font-size-12" style="color:#D2D5DA" data-ng-class="{'label-color-white': isLightTheme}" for="report-user-name">{{viewWidgetVars.NAME}} 
+                  <span class="text-danger">*</span></label>
                 <div
                   data-ng-class="{ 'has-error': submitContentFormForm.fullName.$invalid && submitContentFormForm.fullName.$touched }"
                   class="display-flex">
@@ -150,20 +154,20 @@ Copyright end -->
                 </div>
               </div>
               <div class="margin-bottom-md">
-                <label class="font-size-12" style="color:#D2D5DA" data-ng-class="{'label-color-white': isLightTheme}" for="report-user-name">{{viewWidgetVars.EMAIL_ID}}
+                <label class="font-size-12" style="color:#D2D5DA" data-ng-class="{'label-color-white': isLightTheme}" for="report-user-name">
+                  {{viewWidgetVars.EMAIL_ID}}
                   <span class="text-danger">*</span>
                 </label>
-                <i class="icon icon-information font-Size-13"></i>
-                <div
-                  data-ng-class="{ 'has-error': submitContentFormForm.email.$invalid && submitContentFormForm.email.$touched }"
+                <div data-ng-class="{ 'has-error': submitContentFormForm.email.$invalid && submitContentFormForm.email.$touched }"
                   class="display-flex">
                   <input data-ng-class="{'input-background-white': isLightTheme}" data-ng-disabled="submitFormFlag" class="form-control border-radius-5" type="email" id="emails"
                     ng-model="user.emailId" name="email" required multiple>
                 </div>
               </div>
               <div class="margin-bottom-md">
-                <label class="font-size-12" style="color:#D2D5DA" data-ng-class="{'label-color-white': isLightTheme}"
-                  for="report-user-name">{{viewWidgetVars.ORGANIZATION_NAME}}<span class="text-danger">*</span></label>
+                <label class="font-size-12" style="color:#D2D5DA" data-ng-class="{'label-color-white': isLightTheme}" for="report-user-name">
+                  {{viewWidgetVars.ORGANIZATION_NAME}}
+                  <span class="text-danger">*</span></label>
                 <div
                   data-ng-class="{ 'has-error': submitContentFormForm.organizationName.$invalid && submitContentFormForm.organizationName.$touched }"
                   class="display-flex">
@@ -180,8 +184,9 @@ Copyright end -->
             </div>
             <div id="solution Details">
               <div class="margin-bottom-md" id="solution-title">
-                <label class="font-size-12" style="color:#D2D5DA" data-ng-class="{'label-color-white': isLightTheme}"
-                  for="report-user-name">{{viewWidgetVars.SOLUTION_TITLE}}<span class="text-danger">*</span></label>
+                <label class="font-size-12" style="color:#D2D5DA" data-ng-class="{'label-color-white': isLightTheme}" for="report-user-name">
+                  {{viewWidgetVars.SOLUTION_TITLE}}
+                  <span class="text-danger">*</span></label>
                 <div
                   data-ng-class="{ 'has-error': submitContentFormForm.solutionTitle.$invalid && submitContentFormForm.solutionTitle.$touched }"
                   class="display-flex">
@@ -191,10 +196,10 @@ Copyright end -->
               </div>
               <div class="margin-bottom-md" id="selectCategory"
                 data-ng-class="{ 'has-error': submitContentFormForm.solutionCategory.$invalid && submitContentFormForm.solutionCategory.$touched }">
-                <label id="field-for-data-source"
-                  class="control-label font-size-12">{{viewWidgetVars.SOLUTION_CATEGORY}}
+                <label id="field-for-data-source" class="control-label font-size-12">
+                  {{viewWidgetVars.SOLUTION_CATEGORY}}
                 </label>
-                <span class="text-danger">*</span>
+                <span class="text-danger font-size-12">*</span>
                 <select data-ng-class="{'input-background-white': isLightTheme}"  name="solutionCategory" id="solutionCategory" class="form-control border-radius-5 "
                   data-ng-disabled="submitFormFlag" data-ng-model="selectedCategory.name"
                   data-ng-change="selectedCategoryChanged()" required>
@@ -204,8 +209,9 @@ Copyright end -->
 
               </div>
               <div class="margin-bottom-md" id="solution-details">
-                <label class="font-size-12" style="color:#D2D5DA" data-ng-class="{'label-color-white': isLightTheme}"
-                  for="report-user-name">{{viewWidgetVars.SOLUTION_DETAILS}}<span class="text-danger">*</span></label>
+                <label class="font-size-12" style="color:#D2D5DA" data-ng-class="{'label-color-white': isLightTheme}" for="report-user-name">
+                  {{viewWidgetVars.SOLUTION_DETAILS}}
+                  <span class="text-danger">*</span></label>
                 <div
                   data-ng-class="{ 'has-error': submitContentFormForm.solutionDetails.$invalid && submitContentFormForm.solutionDetails.$touched }"
                   class="display-flex">
@@ -237,7 +243,8 @@ Copyright end -->
               <div data-ng-if="showCreatedSolutions == 'created'">
                 <div id="installedSPorC"
                   data-ng-class="{ 'has-error': submitContentFormForm.selectSolution.$invalid && submitContentFormForm.selectSolution.$touched }">
-                  <label id="field-for-data-source" class="control-label">{{viewWidgetVars.SELECT_SOLUTION}}
+                  <label id="field-for-data-source" class="control-label">
+                    {{viewWidgetVars.SELECT_SOLUTION}}
                     <span class="text-danger">*</span>
                   </label>
                   <select data-ng-class="{'input-background-white': isLightTheme}" data-ng-disabled="submitFormFlag" class="form-control border-radius-5 " name="selectSolution"
@@ -255,7 +262,7 @@ Copyright end -->
                 <div data-ng-show="selectedCategory.name === 'Widget' || selectedCategory.name === 'Connector'">
                   <span class="font-size-12 margin-top-md" style="color:#D2D5DA" data-ng-class="{'label-color-white': isLightTheme}">
                   </span>
-                  <div class="file-upload margin-top-6" data-ng-model="uploadedFile"
+                  <div class="file-upload margin-top-6" name="uploadFileDiv" data-ng-model="uploadedFile"
                     ngf-select="uploadFiles(uploadedFile)" data-ngf-drop="uploadFiles(uploadedFile)"
                     data-ng-show="!uploadedFileFlag" data-accept=".tgz" data-ngf-pattern="'.zip,.tgz,.json'">
                     <h2 class="margin-0">
@@ -274,7 +281,7 @@ Copyright end -->
                 <div data-ng-show="selectedCategory.name === 'Solution Pack'">
                   <span class="font-size-12 margin-top-md" style="color:#D2D5DA">
                   </span>
-                  <div class="file-upload margin-top-6" data-ng-model="uploadedFile"
+                  <div class="file-upload margin-top-6" name="uploadFileDiv" data-ng-model="uploadedFile"
                     ngf-select="uploadFiles(uploadedFile)" data-ngf-drop="uploadFiles(uploadedFile)"
                     data-ng-show="!uploadedFileFlag" data-accept=".zip" data-ngf-pattern="'.zip,.tgz,.json'">
                     <h2 class="margin-top-sm margin-bottom-0">
